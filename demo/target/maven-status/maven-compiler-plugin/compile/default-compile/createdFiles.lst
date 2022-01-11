@@ -1,0 +1,7 @@
+com\apirest\dao\LenguagesDAOImpl.class
+com\apirest\service\LenguagesServiceImpl.class
+com\apirest\service\LenguagesService.class
+com\apirest\controller\LenguagesRestController.class
+com\apirest\ApiRestApplication.class
+com\apirest\entity\Lenguages.class
+com\apirest\dao\LenguagesDAO.class
