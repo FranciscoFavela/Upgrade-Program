@@ -1,4 +1,4 @@
-import me.tongfei.*;
+
 import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarBuilder;
 import org.apache.commons.io.FileUtils;
@@ -26,21 +26,21 @@ public class Archivo implements Runnable {
     this.Ruta=Ruta;
 
     }
-    ExecutorService executor = Executors.newFixedThreadPool(8);
 
     @Override
     public void run() {
         try (BufferedInputStream inputStream = new BufferedInputStream(new URL(Enlace).openStream());
              FileOutputStream fileOS = new FileOutputStream(Ruta);
-
-             ) {
+             )
+        {
             int totalBytesRead=0;
             double percentCompleted = 1;
             URL url = new URL(Enlace);
             URLConnection urlConnection = url.openConnection();
             urlConnection.connect();
-            int file_size = urlConnection.getContentLength();
-            ProgressBar pb = new ProgressBar(Ruta,file_size);
+            int file_size = urlConnection.getContentLength() /1000000;
+            String Ruta2=Ruta.substring(Ruta.lastIndexOf('/') + 1);
+            ProgressBar pb = new ProgressBar(Ruta2,file_size);
 
             /*
             File file = new File(Ruta);
@@ -54,7 +54,7 @@ public class Archivo implements Runnable {
 
                 fileOS.write(data, 0, byteContent);
                 File file = new File(Ruta);
-                double fileSize = FileUtils.sizeOf(file);
+                double fileSize = FileUtils.sizeOf(file)/1000000;
 
                 percentCompleted = (fileSize * 100 / file_size);
 

@@ -13,7 +13,8 @@ import java.net.URL;
 
             a1.start();
             a2.start();
-
+            a1.setPriority(Thread.MAX_PRIORITY);
+            a2.setPriority(Thread.NORM_PRIORITY);
         }
     }
 
