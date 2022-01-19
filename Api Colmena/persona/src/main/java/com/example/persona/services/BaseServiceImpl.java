@@ -3,6 +3,8 @@ package com.example.persona.services;
 import com.example.persona.entities.Base;
 import com.example.persona.entities.Persona;
 import com.example.persona.repositories.BaseRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -28,6 +30,17 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
             throw new Exception(e.getMessage());
         }
 
+    }
+    @Override
+    @Transactional
+    public Page<E> findAll(Pageable pageable) throws Exception{
+        try {
+            Page<E> entities = baseRepository.findAll(pageable);
+            return entities;
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
